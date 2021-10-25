@@ -27,13 +27,17 @@
 <br />
 <div align="center">
   <a href="https://github.com/simplisticmartin/NASA_API_APPLICATION">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+
   </a>
 
-<h3 align="center">Nasa </h3>
+<h3 align="center">Nasa picture of the day </h3>
 
   <p align="center">
-    project_description
+    
+Currently, this project hasn't entirely been complete. Where the application I have built lies is in the /fullstack
+
+client and server both connect to my mongo atlas db but I need some help/time currently to put things together.
+
     <br />
     <a href="https://github.com/simplisticmartin/NASA_API_APPLICATION"><strong>Explore the docs »</strong></a>
     <br />
@@ -43,6 +47,7 @@
     <a href="https://github.com/simplisticmartin/NASA_API_APPLICATION/issues">Report Bug</a>
     ·
     <a href="https://github.com/simplisticmartin/NASA_API_APPLICATION/issues">Request Feature</a>
+
   </p>
 </div>
 
