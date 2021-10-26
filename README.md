@@ -89,9 +89,15 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
+4. Create a `config.env` in /server (same level as package.json) Obtain free cluster at MongoAtlas containing:
    ```js
-   const API_KEY = "ENTER YOUR API";
+   ATLAS_URI=(Copy and Paste Data)
+   PORT=5000
+   ```
+   Create a `.env` in /client and obtain a free api key at https://api.nasa.gov/index.html (same level as pacakge.json)
+   ```js
+   REACT_APP_NASA_ENDPOINT=https://api.nasa.gov/
+   REACT_APP_NASA_API_KEY=(place apikey and remove parenthesis)
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -120,19 +126,6 @@ See the [open issues](https://github.com/simplisticmartin/NASA_API_APPLICATION/i
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
-
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
