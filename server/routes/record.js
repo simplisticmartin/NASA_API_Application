@@ -1,3 +1,5 @@
+/** @format */
+
 const express = require("express");
 
 // recordRoutes is an instance of the express router.
@@ -36,12 +38,22 @@ recordRoutes.route("/record/:id").get(function (req, res) {
 // This section will help you create a new record.
 recordRoutes.route("/record/add").post(function (req, response) {
   let db_connect = dbo.getDb();
+  console.log(req.body.email);
   let myobj = {
-    person_name: req.body.person_name,
-    person_position: req.body.person_position,
-    person_level: req.body.person_level,
-    person_email: req.body.person_email,
-    person_rating: req.body.person_rating,
+    email: req.body.email,
+    ratings: req.body.ratings,
+  };
+  db_connect.collection("records").insertOne(myobj, function (err, res) {
+    if (err) throw err;
+    response.json(res);
+  });
+});
+
+recordRoutes.route("/record/addImage").post(function (req, response) {
+  let db_connect = dbo.getDb();
+  console.log("hiiii" + req.body.image_source);
+  let myobj = {
+    image_source: req.body.image_source,
   };
   db_connect.collection("records").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -53,13 +65,10 @@ recordRoutes.route("/record/add").post(function (req, response) {
 recordRoutes.route("/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
+  let key = "ratings." + req.body.source;
   let newvalues = {
     $set: {
-      person_name: req.body.person_name,
-      person_position: req.body.person_position,
-      person_level: req.body.person_level,
-      person_email: req.body.person_email,
-      person_rating: req.body.person_rating,
+      [key]: req.body.rating,
     },
   };
   db_connect
