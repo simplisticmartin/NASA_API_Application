@@ -40,6 +40,14 @@ function App() {
       .then((res) => {
         console.log(res.data);
       });
+
+    axios
+      .post("http://localhost:5000/record/addImage", {
+        image_source: data2JSON.url,
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
   };
 
   return (

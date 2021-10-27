@@ -55,29 +55,44 @@ recordRoutes.route("/record/addImage").post(function (req, response) {
   let myobj = {
     image_source: req.body.image_source,
   };
-  db_connect.collection("records").insertOne(myobj, function (err, res) {
-    if (err) throw err;
-    response.json(res);
-  });
+  db_connect
+    .collection("records")
+    .updateOne(
+      { image_source: req.body.image_source },
+      { $setOnInsert: { image_source: req.body.image_source } },
+      { upsert: true }
+    );
 });
 
 // This section will help you update a record by id.
 recordRoutes.route("/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
-  let key = "ratings." + req.body.source;
-  let newvalues = {
-    $set: {
-      [key]: req.body.rating,
-    },
-  };
+
   db_connect
     .collection("records")
-    .updateOne(myquery, newvalues, function (err, res) {
-      if (err) throw err;
-      console.log("1 document updated");
-      response.json(res);
+    .findOne({ image_source: req.body.source })
+    .then((item) => {
+      console.log("hi");
+      console.log(item._id);
+      let key = "ratings." + item._id;
+      let newvalues = {
+        $set: {
+          [key]: req.body.rating,
+        },
+      };
+      db_connect
+        .collection("records")
+        .updateOne(myquery, newvalues, function (err, res) {
+          if (err) throw err;
+          console.log("1 document updated");
+          response.json(res);
+        });
     });
+  // .toArray(function (err, result) {
+  //   if (err) throw err;
+  //   res.json(result);
+  // });
 });
 
 // This section will help you delete a record
